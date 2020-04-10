@@ -11,8 +11,6 @@ import java.util.Random;
 
 public class PickJurors implements CreateJury {
 
-    private Random random = new Random();
-
     private GetEligibleJurors getEligibleJurors;
     private ShowJurors showJurors;
 
@@ -32,9 +30,12 @@ public class PickJurors implements CreateJury {
         if (neededNumber > eligibleJurors.size()) {
             throw new IllegalArgumentException("The number of needed jurors exceeds the number of eligible jurors.");
         }
+        
         List<String> eligibleJurorsLinked = new LinkedList<>(eligibleJurors);
         List<String> pickedJurors = new ArrayList<>();
-
+        
+        Random random = new Random();
+        
         for (int i = 0; i < neededNumber; i++) {
             int randomInt = (int) (random.nextFloat() * eligibleJurorsLinked.size());
             pickedJurors.add(eligibleJurorsLinked.get(randomInt));
